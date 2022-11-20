@@ -89,18 +89,38 @@ text-align:center;
     border: solid #999 1px;
     color:black;
 }
-
+#quiz {
+    height:150px;
+    position:relative;
+}
+#top {
+    display:flex;
+}
+button#start {
+    font-size:20px;
+    width:200px;
+}
 #ansresult {
     color:red;position:absolute; top:0; text-align:center; width:100%;font-size:80px; display:none; opacity:.2;
 }
+#suggest {
+    border:1px solid #ccc;
+    position:relative;
+    flex:1;
+    background-color:white;
+}
+#qresult {
+    position:absolute; top:20px; left:10px; width:300px;  border:1px solid green; background-color:#cfc; opacity:.8;
+}
+
 </style>
 </head>
 <body>
   <div>
     <div style="border:1px solid green; width:490px; margin:0 auto;">
       <h1>国旗クイズ</h1>
-      <div id="quiz" style="height:150px;">
-        <div style="display:flex;" id="top">
+      <div id="quiz">
+        <div id="top">
           <div style="width:370px;">
             <h3>設定</h3>
             <ul>
@@ -115,7 +135,7 @@ text-align:center;
                 <label><input type=radio name="target" value="nation" checked />国名</label>
                 <label><input type=radio name="target" value="capital" />首都</label></li>
             </ul>
-            <button id="start" style="font-size:20px; width:200px;">開始</button>
+            <button id="start">開始</button>
           </div>
           <div id="list">
             <h3>一覧</h3>
@@ -126,7 +146,7 @@ text-align:center;
         </div>
         <div id="main">
           <div><span id="flag"></span><span id="qid"></span><span id="lv"></span><span id="timer"></span></div>
-          <div id="suggest" style="border:1px solid #ccc; position:relative; flex:1; background-color:white;">
+          <div id="suggest">
             <div style="overflow:hidden; position:relative;white-space:nowrap; width:290px; height:110px;">
               <span></span><span id="ansname"></span>
             </div>
@@ -299,8 +319,7 @@ $id("start").onclick = () => {
     var show_ending = () => {
         turn++;
         $id("answer").onkeyup = null;
-        $id("quiz").style.position = "relative";
-        $id("quiz").innerHTML += '<div id="qresult" style="position:absolute; top:20px; left:10px; width:300px;  border:1px solid green; background-color:#cfc; opacity:.8">';
+        $id("quiz").innerHTML += '<div id="qresult">';
         var noclear = miss.filter(v => v == turn).length;
         
         var ret = noclear ? "<span>Finished!</span><ul>" : '<span style="font-size:30px;">Perfect Clear!!!</span><ul>';
